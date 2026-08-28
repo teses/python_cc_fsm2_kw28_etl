@@ -1,0 +1,14 @@
+{
+    "pricefile" : "../data/Pricefiles/PE_All_Parts_v7.txt",
+    "dlists_path": "../data/D-Lists",
+
+
+    "db" : {
+      "user" : "root",
+      "password" : "",
+      "host" : " 127.0.0.1",
+      "database" : "comcave_etl"
+    }
+
+
+}
