@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# Environments
+.venv/
+
+# PyCharm
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+/.ipynb_checkpoints/
