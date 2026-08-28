@@ -42,8 +42,12 @@ Untersuchen Sie unter anderem:
 
 Dokumentieren Sie Ihre Ergebnisse.  
 - Datenanalyse 
-- Datenflussplan
-- Scriptübersicht / Anforderungen
+- Datenflussplan - Quellen, Komponente(Script), Ziele
+  - Übersichtplan
+  - Detailplan (Spaltennamen, Mapping)
+- Komponenteübersicht 
+  - Anforderungen an die Scripte
+  - Was soll das Skript/Komponente machen
 
 ## 4. Phase 2 - Planung der Architektur 
 
@@ -72,6 +76,6 @@ Folgende Dokumente sollten erstellt werden:
 Anforderungen
 - Die Lösung soll Objektorientiert umgesetzt werden.
 - Es soll eine main Datei geben die alle Pipelines auf einmal ausführt.
-- 
+ 
 
 
