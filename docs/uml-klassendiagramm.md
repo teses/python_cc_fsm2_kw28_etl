@@ -5,9 +5,20 @@
 classDiagram   
 direction LR
 
-class Engine { }
-class Logger { }
+class DatabaseEngine { 
+    + connection
+}
+class Logger { 
+    __init__(logfile, level)
+    +debug()
+    +info()
+    +warning()
+    +error()
+    +info()
+    +critical()
+}
 class Config { 
+    __init__(filename)
     +config dict
 }
 
@@ -16,9 +27,9 @@ class ETLPipeline {
     <<abstract>>
     # _config Config
     # _logger Logger
-    # _db_conn Engine
+    # _db_conn connection
     
-    + __init__(config, logger, db_conn)
+    + __init__(config : Config, logger : Logger, engine : DatabaseEngine)
     
     # _extract()* DataFrame 
     # _transform(DataFrame)* DataFrame
@@ -26,6 +37,16 @@ class ETLPipeline {
     
     # _before_run()
     # _after_run()
+    
+    + run()*
+}
+
+class ETLSinglePipeline { 
+    
+    + run()
+}
+
+class ETLMultiplePipeline { 
     
     + run()
 }
@@ -66,16 +87,20 @@ class ETLApplicationLists {
     # _load(DataFrame)
 }
 
-ETLPipeline o-- Engine
+ETLPipeline o-- DatabaseEngine
 ETLPipeline o-- Logger
 ETLPipeline o-- Config
 
-ETLPipeline <|-- ETLPricefile
-ETLPipeline <|-- ETLGpsr
-ETLPipeline <|-- ETLDLists
-ETLPipeline <|-- ETLContentListsContent
-ETLPipeline <|-- ETLContentListsSpecifications
-ETLPipeline <|-- ETLApplicationLists
+ETLPipeline <|-- ETLSinglePipeline
+ETLPipeline <|-- ETLMultiplePipeline
 
+ETLSinglePipeline <|-- ETLPricefile
+ETLSinglePipeline <|-- ETLGpsr
+
+ETLMultiplePipeline  <|-- ETLDLists
+ETLMultiplePipeline  <|-- ETLContentListsContent
+ETLMultiplePipeline  <|-- ETLContentListsSpecifications
+ETLMultiplePipeline  <|-- ETLApplicationLists
+ 
 ```
 

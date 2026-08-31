@@ -2,7 +2,10 @@
     "pricefile" : "../data/Pricefiles/PE_All_Parts_v7.txt",
     "dlists_path": "../data/D-Lists",
 
-
+    "logging": {
+      "level": "INFO",
+      "file": "logs/etl_pipeline.log"
+    },
     "db" : {
       "user" : "root",
       "password" : "",
