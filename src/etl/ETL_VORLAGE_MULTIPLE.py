@@ -11,7 +11,7 @@ class ETL_VORLAGE_MULTIPLE(ETLMultiplePipeline):
 
     def __init__(self, config: Config, logger: Logger, engine: DatabaseEngine):
         super().__init__(config, logger, engine)
-        self._logger.info(self._config.config['db'])
+        #self._logger.info(self._config.config['pricefile'])
         self._counts = 0
 
 

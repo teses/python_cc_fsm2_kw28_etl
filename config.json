@@ -1,5 +1,5 @@
 {
-    "pricefile" : "../data/Pricefiles/PE_All_Parts_v7.txt",
+    "pricefile" : "data/Pricefiles/PE_All_Parts_v7.txt",
     "dlists_path": "../data/D-Lists",
 
     "logging": {
