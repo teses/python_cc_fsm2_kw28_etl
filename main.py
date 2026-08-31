@@ -18,8 +18,8 @@ logger = ""
 
 
 pipelines = [
-    ETlPricefile(db_conn, logger, config),
-    ETLGPRS(db_conn, logger, config)
+    ETLPricefile(config, logger, db_conn),
+    ETLGPRS(config, logger, db_conn)
 ]
 for pipeline in pipelines:
     try:

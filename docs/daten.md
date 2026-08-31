@@ -1,20 +1,53 @@
+# Datenquellen
 
-# Pricefile
-- eine Datei
-Dateiaert: txt
-Format: 
 
+## Pricefile
+
+- Dateiart: txt
+- Format: CSV
+- Seperator: TAB
+- Dateimenge: 1
+
+Datei: `PE_All_Parts_v7.txt`
+
+**Inhalt:** 
+- Artikeldaten
+- Preisdaten 
+- Bestand
 
 # Others
-- eine Datei
+- Dateiart:  txt
+- Format:  CSV
+- Seperator:  ;-semikolon
+- Dateimenge: 1
+
+**Inhalt:**
+- Herstellerinformationen
+
+Datei: `GPSR_Manuf._and_EU_Resp`
 
 # D-Lists
-- mehrere Dateien
+- Dateiart:  txt
+- Format:  CSV
+- Seperator:  ;-semikolon
+- Dateimenge: mehrere
 
+Alle CSV Dateien die auf `_DE.csv` enden
 
 # Content Lists
-- mehrere Dateien
-- 2 Sheets je Datei
+- Dateiart/Format:  EXCEL
+- Seperator:  ;-semikolon
+- Dateimenge: mehrere
+- Inhalt: 2 Sheets je Datei
+    - Tabelle: `content`
+    - Tabelle: `specifications`
+
+Alle Dateien im Verzeichnis die auf `_DE_v3.xlsx` enden
 
 # Applikations Lists
-- mehrere Dateien
+- Dateiart:  txt
+- Format:  CSV
+- Seperator:  ;-semikolon
+- Dateimenge: mehrere
+
+Alle CSV Dateien die auf `_v3.csv` enden
