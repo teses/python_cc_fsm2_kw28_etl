@@ -38,16 +38,17 @@ class ETLPipeline {
     # _before_run()
     # _after_run()
     
+    # setIndexOnTableColumn(table_name, column_name)
     + run()*
 }
 
 class ETLSinglePipeline { 
-    
+    <<abstract>>
     + run()
 }
 
 class ETLMultiplePipeline { 
-    
+    <<abstract>>
     + run()
 }
 
@@ -55,7 +56,8 @@ class ETLPricefile {
     # _extract() DataFrame 
     # _transform(DataFrame) DataFrame
     # _load(DataFrame)
-}
+    # _after_run()
+} 
 
 class ETLGpsr {
     # _extract() DataFrame 

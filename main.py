@@ -1,26 +1,40 @@
 
+from src.config import Config
+from src.logger import Logger
+from src.database import DatabaseEngine
 
+from src.etl.ETL_VORLAGE import ETL_VORLAGE
+from src.etl.ETL_VORLAGE_MULTIPLE import ETL_VORLAGE_MULTIPLE
+from src.etl.ETLPricefile import ETLPricefile
+from src.etl.ETLGpsr import ETLGpsr
 
 
 # get config
-config = ""
+config = Config("config.json")
 
-# get db connection
-db_conn = ""
+
 
 # logger initialisieren
-logger = ""
+logger = Logger(
+    logfile = config.config['logging']['file'],
+    level   = config.config['logging']['level']
+)
 
-# Pipeline instanzieieren
-#p = ETlPricefile(db_conn, logger, config)
-#p = ETlGPRS(db_conn, logger, config)
-#p.run()
+# get db connection
+engine = DatabaseEngine(
+    database = config.config['db']['database'],
+    host     = config.config['db']['host'],
+    user     = config.config['db']['user'],
+    password = config.config['db']['password']
+)
 
 
 pipelines = [
-    ETLPricefile(config, logger, db_conn),
-    ETLGPRS(config, logger, db_conn)
+    ETLPricefile(config=config, logger=logger, engine=engine),
+    ETLGpsr(config=config, logger=logger, engine=engine),
 ]
+
+
 for pipeline in pipelines:
     try:
         pipeline.run()

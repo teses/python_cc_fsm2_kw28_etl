@@ -1,7 +1,17 @@
 {
     "pricefile" : "data/Pricefiles/PE_All_Parts_v7.txt",
-    "dlists_path": "../data/D-Lists",
-
+    "dlists_path": "data/D-Lists",
+    "other":"data/Other/GPSR_Manuf._and_EU_Resp.csv",
+    "contentlists":"data/ContentLists",
+    "applicationlists":"data/ApplicationLists",
+    "dbtables": {
+      "pricefile" : "etl_pricefile",
+      "gpsr": "etl_gpsr",
+      "dlists": "etl_dlists",
+      "content": "etl_contentlists_content",
+      "specifications": "etl_contentlists_specifications",
+      "applications": "etl_application_lists"
+    },
     "logging": {
       "level": "INFO",
       "file": "logs/etl_pipeline.log"
@@ -9,9 +19,10 @@
     "db" : {
       "user" : "root",
       "password" : "",
-      "host" : " 127.0.0.1",
+      "host" : "127.0.0.1",
       "database" : "comcave_etl"
-    }
+    },
+    "vat" : 19
 
 
 }
