@@ -45,6 +45,14 @@ class ETLPipeline(ABC):
             conn.execute(text(sql))
             conn.commit()
 
+    def _drop_table(self, table_name):
+        self._logger.info(f"drop table {table_name} ")
+        # Tabelle löschen
+        with self._db_conn.begin() as conn:
+            conn.execute(text(f"DROP TABLE IF EXISTS {table_name} "))
+
+
+
     def _before_run(self):
         self._logger.info(f"Starte ETL Pipeline: {self.__class__.__name__}")
 

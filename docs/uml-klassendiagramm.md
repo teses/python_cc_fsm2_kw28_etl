@@ -38,7 +38,8 @@ class ETLPipeline {
     # _before_run()
     # _after_run()
     
-    # setIndexOnTableColumn(table_name, column_name)
+    # _setIndexOnTableColumn(table_name, column_name)
+    # _drop_table(table_name)
     + run()*
 }
 

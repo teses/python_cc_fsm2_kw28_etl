@@ -1,8 +1,7 @@
-
 import pandas as pd
 from src.etl.ETLMultiplePipeline import ETLMultiplePipeline
-from sqlalchemy import text
 from sqlalchemy.types import Integer, String, Float, DateTime
+from sqlalchemy import text
 from src.config import Config
 from src.logger import Logger
 from src.database import DatabaseEngine
@@ -10,8 +9,7 @@ from os import listdir
 from os.path import isfile, join
 
 
-class ETLDLists(ETLMultiplePipeline):
-
+class ETLContentListsContent(ETLMultiplePipeline):
 
     def __init__(self, config: Config, logger: Logger, engine: DatabaseEngine):
         super().__init__(config, logger, engine)
@@ -19,49 +17,39 @@ class ETLDLists(ETLMultiplePipeline):
 
 
     def _before_run(self):
-        self._drop_table(self._config.config['dbtables']['dlists'])
+        self._drop_table(self._config.config['dbtables']['content'])
 
 
-    def _extract(self)  :
-        self._logger.info("Starte _extract()")
-
-        #Alle Dateien einlesen die relevant sind
+    def _extract(self) -> pd.DataFrame:
         data_files = [
-            f for f in listdir(self._config.config['dlists_path'])
-            if isfile(join(self._config.config['dlists_path'], f)) and f[-6:] == "DE.csv"
+            f for f in listdir(self._config.config["contentlists"])
+            if isfile(join(self._config.config["contentlists"], f)) and f[-10:] == "DE_v3.xlsx"
         ]
-        self._logger.info(f"{len(data_files)} Dateien werden gelesen")
 
+        self._logger.info(f"{len(data_files)} Dateien werden gelesen")
         iter = 1
         for data_file in data_files:
             self._logger.info(f"{iter}/{len(data_files)}. extract {data_file} ")
-            file = join(self._config.config["dlists_path"], data_file)
-            data = pd.read_csv(
-                file,
-                dtype=str,
-                sep=';'
-            )
-            iter +=1
+
+            excel_file = join(self._config.config["contentlists"], data_file)
+
+            data = pd.read_excel(excel_file, dtype=str)
+            iter += 1
             yield data
 
 
-
-
     def _transform(self, df: pd.DataFrame) -> pd.DataFrame:
-        self._logger.info("Starte _transform()")
         df.columns = df.columns.str.replace(" - ", "_")
         # Spaltennamen bereinigen
         df.columns = df.columns.str.strip()
         df.columns = df.columns.str.lower()
         return df
 
-
     def _load(self, df: pd.DataFrame):
-        self._logger.debug(f"start load into db table: {self._config.config['dbtables']['dlists']}")
-
+        self._logger.debug(f"start load into db table: {self._config.config['dbtables']['content']}")
 
         rows_imported = df.to_sql(
-            name=self._config.config['dbtables']['dlists'],
+            name=self._config.config['dbtables']['content'],
             con=self._db_conn,
             if_exists="append",  # replace , append
             index=False,
@@ -70,9 +58,8 @@ class ETLDLists(ETLMultiplePipeline):
             }
         )
         self._counts += rows_imported
-        self._logger.info(f"{rows_imported} rows imported to table {self._config.config['dbtables']['dlists']}")
-
-
+        self._logger.info(f"{rows_imported} rows imported to table {self._config.config['dbtables']['content']}")
 
     def _after_run(self):
         self._logger.info(f"menge aller importierten: {self._counts}")
+

@@ -1,4 +1,6 @@
-
+"""
+Spielwiese während der Entwicklung
+"""
 
 
 from src.config import Config
